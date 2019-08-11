@@ -1,0 +1,328 @@
+.go{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  position:fixed;
+  right:30px;
+  top:30px;
+  z-index:1001
+}
+.more{
+  position:fixed;
+  bottom:80px;
+  right:60px;
+  z-index:1001;
+  animation: more .2s linear infinite alternate;
+}
+.content{
+  width:900px;
+  height:600px;
+  background:rgba(0,0,0,.1);
+  position:absolute;
+  bottom:0;
+  left:50%;
+  margin-left:-450px;
+}
+/* 第一屏 */
+.screen01{
+  background: url("../images/01-bg.png") no-repeat center bottom;
+}
+.screen01 .goods{
+  text-align: center;
+  margin-top:200px;
+}
+.screen01 .safa{
+  position: absolute;
+  left:230px;
+  top:150px;
+  animation: safa01 1s linear infinite alternate;
+}
+.screen01 .fly{
+  position: absolute;
+  right:-50px;
+  top:20px;
+  /* 调用动画 */
+  animation: fly01 1s linear infinite alternate;
+}
+/* 布局使用定位   动画使用位移translate */
+/* 第一屏动画 */
+/* 使用animation动画的步骤：
+  1、定义动画序列   @keyframes
+*/
+@keyframes fly01{
+  from{
+    transform: translateY(-30px)
+  }
+  /* 50%{
+    transform: translateY(20px)
+  } */
+  to{
+    transform: translateY(30px)
+  }
+}
+@keyframes more{
+  from {
+    transform: translateY(-10px)
+  }
+  to {
+    transform: translateY(10px)
+  }
+}
+@keyframes safa01 {
+  from {
+    transform: translateY(-20px)
+  }
+  to {
+    transform: translateY(20px)
+  }
+}
+/* 第二屏动画 */
+.screen02{
+  background: url("../images/02-bg.png") no-repeat center bottom;
+}
+.screen02 .goods{
+  position: absolute;
+  left:50%;
+  margin-left:-220px;
+  bottom:201px;
+  transform-origin:right bottom;
+  transform:scale(0);
+}
+.screen02 .safa{
+  transform:scale(0.5);
+  position: absolute;
+  left:292px;
+  top:141px;
+  opacity:0;
+  z-index:1001;
+}
+.screen02 .input{
+  position: absolute;
+  right:170px;
+  top:120px;
+  opacity:0;
+  /* 右上角：transform:scale(0.7); */
+  /* 中心位置 transform:translate(-180px,130px)*/
+  /* 最右边的位置 transform: translate(2000px,130px); */
+  /* 默认的变换原点在中心 */
+  transform-origin: right top;
+}
+.screen02 .input .search{
+
+}
+.screen02 .input .key{
+  position: absolute;
+  left:100px;
+  top:4px;
+  opacity:0;
+}
+.screen02 .text{
+  text-align:center;
+}
+.screen02 .text .text01{
+
+}
+.screen02 .text .text02{
+  position: absolute;
+  opacity:0;
+}
+/* 第二屏动画 */
+.screen02.now .text .text01{
+  position: absolute;
+  opacity:0;
+}
+.screen02.now .text .text02 {
+  position: static;
+  opacity: 1;
+  transition: opacity 1s;
+}
+.screen02.now .input{
+  /* opacity:1;  使用这个直接指定最终的元素状态 */
+  /* 也可在animation中指定动画完成，使用100%的状态为最终状态  forwards */
+  animation: input02 3s linear forwards;
+}
+.screen02.now .input .key{
+  opacity:1;
+  transition: all 1s linear 1s;
+}
+.screen02.now .goods{
+  /* transform: scale(1);  */
+  transform: none;
+  /* 或者transform: none  清空变换的样式*/
+  transition: all 1s linear 2s;
+}
+
+/* 1、搜索框在右边动画出现
+  2、在页面中间停留一下  显示完关键字
+  3、商品列表动画显示，搜索框动画位移到右上角
+  搜索框先出现在最右边，然后移动到中间，停留一会，然后再移动到右上角  实现3个过程的动画 需要设置四个节点 3等分
+*/
+@keyframes input02{
+  0%{
+    /* 初始化元素的位置 */
+    transform: translate(2000px, 130px);
+    opacity:1;
+  }
+  33.33%{
+    transform:translate(-180px, 130px);
+  }
+  67%{
+    transform:translate(-180px, 130px);
+  }
+  100%{
+    transform:scale(0.7);
+    opacity: 1;
+  }
+}
+/* 沙发动画  当离开第二屏的时候触发动画  和页面滚动同步 动画时间一致 fullpage页面的默认时长700ms*/
+.screen02.leaved .safa{
+  animation: safa02 1s linear;
+  
+}
+@keyframes safa02{
+  from{
+    opacity:1;
+  }
+  to{
+    opacity:1;
+    /* 沙发向下移动 */
+    transform: translate(-70px, 940px);
+  }
+}
+/* 第三屏 */
+.screen03{
+  background:url("../images/03-bg.png") no-repeat center bottom;
+}
+.screen03 .safa{
+  position:absolute;
+  top:200px;
+  left:214px;
+  display:none;
+}
+.screen03 .change{
+  position: absolute;
+  right:115px;
+  bottom:165px;
+}
+.screen03 .cart{
+  position: absolute;
+  right:192px;
+  bottom:100px;
+}
+.screen03 .change img:last-child{
+  position:absolute;
+  opacity:0;
+}
+.screen03 .cart img:last-child {
+  position: absolute;
+  opacity: 0;
+}
+/* 第三屏动画 */
+.screen03.now .change img:last-child {
+  position:static;
+  opacity:1;
+  transition: all 1s linear; 
+}
+.screen03.now .cart img:last-child {
+  position: static;
+  opacity: 1;
+  transition: all 1s linear;
+}
+.screen03.now .change img:first-child{
+  /* 因为此时隐藏不需要动画了 所以可以直接用 */
+  display:none; 
+}
+.screen03.now .cart img:first-child {
+  display: none;
+}
+.screen03.now .safa{
+  display:block;
+  z-index:1001;
+}
+
+/* 添加第三屏的离开动画类 */
+.screen03.leaved .safa{
+  /* 注意：transform旋转变换之后 坐标轴也会旋转 */
+  /* transform: translate(180px,900px) rotate(45deg); */
+  animation: safa03 1s linear;
+}
+@keyframes safa03{
+  0%{
+
+  }
+  100%{
+    transform: translate(180px, 900px) rotate(45deg);
+  }
+}
+/* 第四屏 */
+.screen04{
+  background:url("../images/04-bg.png") no-repeat center bottom;
+
+}
+.screen04 .cloud{
+  position: absolute;
+  left:-400px;
+  top:-100px;
+  animation: cloud04 20s linear infinite alternate
+}
+@keyframes cloud04{
+  form{
+
+  }
+  to{
+    transform: translateX(1000px)
+  }
+}
+.screen04 .text{
+  text-align:center;
+  margin-top:100px;
+}
+.screen04 .text img:last-child{
+  position: absolute;
+  opacity:0;
+}
+.screen04 .cart{
+  /* 设置定位 使z-index生效 */
+  position: relative;
+  text-align:center;
+  margin-top: 70px;
+  z-index: 1002;
+}
+.screen04 .safa{
+  position: absolute;
+  left:390px;
+  bottom:198px;
+  transform: rotate(45deg);
+  display:none;
+  z-index:10;
+}
+.screen04 .address{
+  position: absolute;
+  left:50%;
+  /* css3中使用transform实现居中 */
+  transform: translateX(-50%);
+  bottom: 165px;
+  display:none;
+}
+.screen04 .address img{
+  display:block;
+}
+.screen04 .address img:last-child{
+  position: absolute;
+  top:56px;
+  left:50%;
+  transform: translateX(-50%);
+  display: none;
+}
+.screen04.now .cart{
+
+}
+.screen04.now .safa{
+  display:block;
+}
+.screen04.now .cart{
+  transition: all 3s;
+  transform: translateX(1000px)
+}
+/* 掐时间 做延迟 来完成动画的衔接 */
+/* 也可以使用监听动画结束，然后来衔接动画 transitionend  animationend*/
