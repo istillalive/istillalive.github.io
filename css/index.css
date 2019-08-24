@@ -13,6 +13,11 @@
   right:60px;
   z-index:1001;
   animation: more .2s linear infinite alternate;
+  transition: all 1s;
+}
+.more.leaved{
+  opacity:0;
+  transition: all 1s;
 }
 .content{
   width:900px;
@@ -326,4 +331,256 @@
 }
 /* 掐时间 做延迟 来完成动画的衔接 */
 /* 也可以使用监听动画结束，然后来衔接动画 transitionend  animationend*/
+
+/* 第五屏 */
+.screen05{
+  background: url(../images/05-bg.png);
+}
+.screen05 .safa{
+   position: absolute;
+   bottom: 100px;
+   left: 100px;
+   opacity: 0;
+   z-index: 1001;
+}
+.screen05 .card {
+  position: absolute;
+  left: 0;
+  top: 180px;
+}
+.screen05 .card .orderImg {
+  position: absolute;
+  left: 130px;
+  top: -80px;
+  transform: translateY(80px);
+}
+.screen05 .card .cardImg {
+  position: relative;
+  z-index: 9999;
+}
+.screen05 .mouse {
+  position: absolute;
+  right:0;
+  top: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 400px;
+}
+.screen05 .mouse .m1,
+.screen05 .mouse .m2 {
+  position: absolute;
+  bottom: 230px;
+  right: 140px;
+}
+.screen05 .mouse .m2 {
+  opacity: 0;
+}
+.screen05 .mouse .hand{
+  position: absolute;
+  bottom: 0;
+  right: 200px;
+  transform: translateY(500px);
+}
+/* 动画 */
+.screen05.now .mouse .hand{
+  transition: all 1s linear;
+  transform: none;
+}
+.screen05.now .mouse .m2 {
+  transition: all .2s linear 1s;
+  opacity: 1;
+}
+.screen05.now .safa {
+  animation: safa05 2s linear 1.2s forwards;
+}
+@keyframes safa05 {
+  from {
+    transform: translateY(-1000px) rotate(30deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-150px) rotate(30deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(30deg);
+  }
+}
+
+.screen05.now .card .orderImg {
+  transition: all 1s linear 2.2s;
+  transform: none;
+}
+/* 第六屏 */
+.screen06{
+  background: url(../images/06-bg.png) no-repeat -300px bottom;
+}
+.screen06.now {
+  transition: background 2s linear 1s;
+  background: url(../images/06-bg.png) no-repeat 100% bottom;
+} 
+
+.screen06 .cloud{
+  position: absolute;
+  top: -50px;
+  left: 0;
+}
+.screen06 .cloud img:first-child{
+  animation: cloud06 40s linear infinite alternate;
+}
+.screen06 .cloud img:last-child{
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: cloud06 20s linear infinite alternate;
+}
+@keyframes cloud06 {
+  from{}
+  to{
+    transform: translateX(1000px)
+  }
+}
+.screen06 .text{
+   position: absolute;
+   top: 80px;
+   left: 100px;
+}
+.screen06 .text img:last-child{
+  opacity: 0;
+  position: absolute;
+}
+.screen06 .box{
+   position: absolute;
+   top: 150px;
+   left: 140px;
+   z-index: 10000;
+}
+
+/* 第五屏沙发掉下来的动画 */
+.screen05.leaved .safa{
+  animation: safa05-06 1s linear;
+}
+@keyframes safa05-06{
+  from{
+    transform: rotate(30deg);
+    opacity:1;
+  }
+  to{
+    transform: translateY(700px) rotate(30deg) scale(0.3);
+    opacity:1;
+  }
+}
+.screen06 .box.show{
+  animation: box06 2s linear forwards;
+}
+@keyframes box06{
+  from{
+    transform: translateX(-500px);
+  }
+  50%{
+    transform: none;
+  }
+  100%{
+    transform: translate(0, 350px) scale(0.3);
+  }
+}
+
+.screen06 .car{
+  position: absolute;
+  bottom: 0;
+  z-index: 10001;
+
+}
+.screen06 .car img{
+  position: absolute;
+  opacity: 0;
+} 
+.screen06 .car img:first-child{
+  opacity: 1;
+  position: relative;
+  left: 100px;
+}
+.screen06 .car .buyer{
+  top: -60px;
+  left: 260px;
+}
+.screen06 .car .address {
+  top: -60px;
+  left: 260px;
+}
+.screen06.now .car .buyer{
+  transition: all .5s 2s;
+  opacity: 1;
+}
+.screen06.now .car .address{
+  transition: all .5s 2.5s;
+  opacity: 1;
+}
+.screen06 .car .worker{
+  left: 100px;
+  bottom: 0;
+  transform: scale(0);
+  transform-origin: left bottom;
+}
+.screen06.now .car .worker{
+  
+  animation: worker06 2.1s linear forwards 3s;
+}
+@keyframes worker06{
+  from{
+    opacity: 1;
+  }
+  33.33%{
+    transform: none;
+  }
+  66.67%{
+    transform: translateY(-115px);
+  }
+  100%{
+    transform: translate(200px, -115px);
+    opacity: 1;
+  }
+
+}
+.screen06.now .car .say{
+  right: -390px;
+  top: -400px;
+  opacity: 1;
+  transition: all .5s linear 5.1s;
+
+}
+.screen06 .person{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.screen06 .person{
+  width: 106px;
+  height: 150px;
+  position: absolute;
+  right: 182px;
+  bottom: 116px;
+  opacity: 0;
+}
+.screen06 .person .personImg{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: scale(0);
+  transform-origin: right bottom;
+}
+.screen06 .person .door {
+  position: absolute;
+  left: 0;
+}
+.screen06.now .person{
+  opacity: 1;
+  transition: opacity .4s linear 5.6s;
+}
+.screen06.now .person .personImg {
+  right: 100px;
+  transform: none;
+  transition: transform .5s linear 6s, right .5s linear 6.5s;
+}
+
 
